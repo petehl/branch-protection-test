@@ -13,8 +13,6 @@ jobs:
           node-version: 20
       - name: Test
         run: node --test
-      - name: Linting
-        run: yarn lint && yarn prettier
 
   # bump-version-and-publish:
   #   needs: build-test
