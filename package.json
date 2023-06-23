@@ -1,0 +1,9 @@
+{
+  "name": "branch-protection-test",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "repository": "https://github.com/petehl/branch-protection-test.git",
+  "author": "Peter Latham <peter.latham@laerdal.com>",
+  "license": "MIT"
+}
