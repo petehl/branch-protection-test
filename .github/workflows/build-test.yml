@@ -14,25 +14,27 @@ jobs:
       - name: Test
         run: node --test
 
-  # bump-version-and-publish:
-  #   needs: build-test
-  #   permissions:
-  #     contents: write
-  #   runs-on: ubuntu-latest
-  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Set the git user
-  #       id: set-git-user
-  #       run: |
-  #         git config --global user.name ${{ github.event.pusher.name }}
-  #         git config --global user.email ${{ github.event.pusher.email }}
-  #     - name: Automated version bump
-  #       uses: phips28/gh-action-bump-version@master
-  #       with:
-  #         commit-message: 'CI: Bump version to {{version}}'
-  #         tag-prefix:  'v'
-  #         repo-token: ${{ secrets.GITHUB_TOKEN }}
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  bump-version-and-publish:
+    needs: build-test
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set the git user
+        id: set-git-user
+        run: |
+          git config --global user.name ${{ github.event.pusher.name }}
+          git config --global user.email ${{ github.event.pusher.email }}
+      - name: Automated version bump
+        uses: phips28/gh-action-bump-version@master
+        with:
+          commit-message: 'CI: Bump version to {{version}}'
+          tag-prefix:  'v'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Debug
+        run: echo "bumped version"
 
