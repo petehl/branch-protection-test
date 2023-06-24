@@ -22,6 +22,8 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
       - name: Set the git user
         id: set-git-user
         run: |
