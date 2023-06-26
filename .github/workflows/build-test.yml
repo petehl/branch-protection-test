@@ -36,9 +36,9 @@ jobs:
         with:
           commit-message: 'CI: Bump version to {{version}}'
           tag-prefix:  'v'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.PETER_GH_AUTO_BUMP }}
+          repo-token: ${{ env.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Debug
         run: echo "bumped version"
 
