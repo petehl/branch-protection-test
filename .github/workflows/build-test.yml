@@ -34,7 +34,7 @@ jobs:
       - name: Automated version bump
         uses: phips28/gh-action-bump-version@master
         with:
-          commit-message: 'CI: Bump version to {{version}}'
+          commit-message: 'CI: Bump version to {{version}}  [skip-ci]'
           tag-prefix:  'v'
           repo-token: ${{ env.GITHUB_TOKEN }}
         env:
