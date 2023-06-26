@@ -18,6 +18,7 @@ jobs:
     needs: build-test
     permissions:
       contents: write
+      actions: write
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
@@ -35,8 +36,9 @@ jobs:
         with:
           commit-message: 'CI: Bump version to {{version}}'
           tag-prefix:  'v'
-        env:
-          GITHUB_TOKEN: ${{ secrets.PETER_GH_AUTO_BUMP }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.PETER_GH_AUTO_BUMP }}
       - name: Debug
         run: echo "bumped version"
 
